@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOVA AI - Intelligent Assistant</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="nova-app">
+        <!-- ================= SIDEBAR KIRI ================= -->
+        <aside class="sidebar" id="sidebar">
+            <!-- Brand Header -->
+            <div class="sidebar-top">
+                <div class="brand">
+                    <div class="brand-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                            <path d="M12 2L14.6 9.4L22 12L14.6 14.6L12 22L9.4 14.6L2 12L9.4 9.4L12 2Z" fill="white"/>
+                        </svg>
+                    </div>
+                    <span class="brand-text">NOVA AI</span>
+                </div>
+                <button type="button" id="toggle-sidebar" class="sidebar-collapse-btn" title="Toggle Sidebar">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Tombol + New Chat -->
+            <button type="button" id="new-chat-btn" class="new-chat-btn">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+                <span>New Chat</span>
+            </button>
+
+            <!-- Daftar Riwayat Chat -->
+            <div class="history-container">
+                <div class="history-group">
+                    <div class="group-label">Today</div>
+                    <div class="history-item active" data-prompt="Jelaskan pengenalan Artificial Intelligence secara ringkas.">
+                        <span class="h-title">Mengenal Artificial Intelligence</span>
+                        <span class="h-time">10:30 AM</span>
+                    </div>
+                    <div class="history-item" data-prompt="Bantu saya membuat script Python untuk mengolah data CSV.">
+                        <span class="h-title">Bantuan coding Python</span>
+                        <span class="h-time">09:15 AM</span>
+                    </div>
+                    <div class="history-item" data-prompt="Berikan rekomendasi laptop terbaik untuk mahasiswa IT.">
+                        <span class="h-title">Rekomendasi laptop untuk mahasiswa</span>
+                        <span class="h-time">Yesterday</span>
+                    </div>
+                    <div class="history-item" data-prompt="Apa perbedaan utama antara database SQL dan NoSQL?">
+                        <span class="h-title">Perbedaan SQL dan NoSQL</span>
+                        <span class="h-time">Yesterday</span>
+                    </div>
+                </div>
+
+                <div class="history-group">
+                    <div class="group-label">Previous 7 Days</div>
+                    <div class="history-item" data-prompt="Bagaimana langkah awal belajar desain UI/UX modern?">
+                        <span class="h-title">Cara belajar UI/UX</span>
+                        <span class="h-time">5 Days ago</span>
+                    </div>
+                    <div class="history-item" data-prompt="Berikan tips manajemen waktu yang efektif saat bekerja.">
+                        <span class="h-title">Tips manajemen waktu</span>
+                        <span class="h-time">6 Days ago</span>
+                    </div>
+                    <div class="history-item" data-prompt="Jelaskan perintah dasar Git dan GitHub untuk pemula.">
+                        <span class="h-title">Git dan GitHub dasar</span>
+                        <span class="h-time">7 Days ago</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kartu Upgrade to Premium -->
+            <div class="premium-card">
+                <div class="premium-header">
+                    <div class="crown-badge">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M5 16L3 5L8.5 10L12 4L15.5 10L21 5L19 16H5ZM19 19C19 19.55 18.55 20 18 20H6C5.45 20 5 19.55 5 19V18H19V19Z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h4>Upgrade to Premium</h4>
+                        <p>Dapatkan akses ke fitur premium dan model AI terbaik.</p>
+                    </div>
+                </div>
+                <button type="button" class="upgrade-btn">Upgrade Sekarang</button>
+            </div>
+
+            <!-- User Profile Footer -->
+            <div class="user-profile">
+                <div class="user-info">
+                    <div class="user-avatar">RM</div>
+                    <div>
+                        <div class="user-name">Rizal Muhammad</div>
+                        <span class="plan-badge">Free Plan</span>
+                    </div>
+                </div>
+                <button type="button" class="more-btn" title="Pengaturan Akun">•••</button>
+            </div>
+        </aside>
+
+        <!-- ================= MAIN AREA KANAN ================= -->
+        <main class="chat-main">
+            <!-- Header -->
+            <header class="chat-header">
+                <div class="header-left">
+                    <button type="button" id="mobile-menu-btn" class="mobile-menu-btn" title="Menu">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <line x1="3" y1="12" x2="21" y2="12"></line>
+                            <line x1="3" y1="18" x2="21" y2="18"></line>
+                        </svg>
+                    </button>
+
+                    <!-- Robot Avatar + Online Dot -->
+                    <div class="bot-header-avatar">
+                        <svg width="26" height="26" viewBox="0 0 36 36" fill="none">
+                            <circle cx="18" cy="18" r="18" fill="url(#avatarBg)"/>
+                            <rect x="9" y="11" width="18" height="14" rx="7" fill="#F8FAFC"/>
+                            <rect x="11" y="14" width="14" height="8" rx="4" fill="#1E1B4B"/>
+                            <circle cx="15" cy="18" r="1.7" fill="#38BDF8"/>
+                            <circle cx="21" cy="18" r="1.7" fill="#38BDF8"/>
+                            <line x1="18" y1="7" x2="18" y2="11" stroke="#E2E8F0" stroke-width="2"/>
+                            <circle cx="18" cy="6" r="2" fill="#A855F7"/>
+                            <defs>
+                                <linearGradient id="avatarBg" x1="0" y1="0" x2="36" y2="36">
+                                    <stop stop-color="#818CF8"/>
+                                    <stop offset="1" stop-color="#6D28D9"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                        <span class="online-indicator"></span>
+                    </div>
+
+                    <div class="bot-header-info">
+                        <div class="bot-title-row">
+                            <h1>NOVA AI</h1>
+                            <span class="ai-badge">AI</span>
+                        </div>
+                        <p class="desktop-subtitle">Your Intelligent Assistant</p>
+                        <p class="mobile-subtitle"><span class="dot"></span> Online</p>
+                    </div>
+                </div>
+
+                <!-- Header Action Buttons -->
+                <div class="header-actions">
+                    <button type="button" id="search-chat-btn" class="circle-action-btn desktop-only" title="Cari pesan">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </button>
+                    <button type="button" id="fullscreen-btn" class="circle-action-btn desktop-only" title="Layar Penuh">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="18" height="18" rx="3"></rect>
+                            <path d="M9 3v18"></path>
+                        </svg>
+                    </button>
+                    <button type="button" id="theme-btn" class="circle-action-btn desktop-only" title="Tema">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="4"></circle>
+                            <path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+                        </svg>
+                    </button>
+                    <button type="button" id="mobile-new-chat" class="mobile-edit-btn" title="Chat Baru">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Area Pesan Chat -->
+            <div id="chat-box" class="chat-box">
+                <div class="date-divider">
+                    <span>Today</span>
+                </div>
+
+                <!-- Pesan Sambutan Awal -->
+                <div class="message-row bot">
+                    <div class="msg-avatar">
+                        <svg width="22" height="22" viewBox="0 0 36 36" fill="none">
+                            <circle cx="18" cy="18" r="18" fill="url(#avatarBg2)"/>
+                            <rect x="9" y="11" width="18" height="14" rx="7" fill="#F8FAFC"/>
+                            <rect x="11" y="14" width="14" height="8" rx="4" fill="#1E1B4B"/>
+                            <circle cx="15" cy="18" r="1.7" fill="#38BDF8"/>
+                            <circle cx="21" cy="18" r="1.7" fill="#38BDF8"/>
+                            <defs>
+                                <linearGradient id="avatarBg2" x1="0" y1="0" x2="36" y2="36">
+                                    <stop stop-color="#818CF8"/>
+                                    <stop offset="1" stop-color="#6D28D9"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <div class="message-bubble">
+                        <div class="message-text">Halo! 👋
+Selamat datang di NOVA AI.
+Ada yang bisa saya bantu hari ini?</div>
+                        <div class="message-meta">
+                            <span class="msg-time">10:30 AM</span>
+                            <div class="msg-actions">
+                                <button type="button" class="action-icon copy-btn" title="Salin">
+                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                    </svg>
+                                </button>
+                                <button type="button" class="action-icon like-btn" title="Suka">
+                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path>
+                                    </svg>
+                                </button>
+                                <button type="button" class="action-icon dislike-btn" title="Tidak Suka">
+                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3zm7-13h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Area Input Bawah -->
+            <div class="composer-wrapper">
+                <!-- Preview File yang Dilampirkan -->
+                <div id="file-preview-bar" class="file-preview-bar hidden"></div>
+
+                <form id="chat-form" class="composer-box">
+                    <input type="file" id="file-input" multiple accept="image/*,.pdf,.txt,.csv,.json,.js,.html,.css,.md" hidden>
+
+                    <!-- Tombol Klip Lampiran -->
+                    <button type="button" id="attach-btn" class="attach-clip-btn" title="Lampirkan file">
+                        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path>
+                        </svg>
+                    </button>
+
+                    <!-- Input Pesan -->
+                    <textarea
+                        id="user-input"
+                        rows="1"
+                        placeholder="Ketik pesan di sini..."
+                    ></textarea>
+
+                    <span class="shortcut-hint">Shift + Enter ↵</span>
+
+                    <!-- Tombol Kirim Bulat Gradasi Ungu -->
+                    <button type="submit" id="send-btn" class="send-circle-btn" title="Kirim Pesan">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="22" y1="2" x2="11" y2="13"></line>
+                            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Bottom Navigation Bar (Khusus Mobile) -->
+            <nav class="mobile-bottom-nav">
+                <button type="button" class="m-nav-item active">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/>
+                    </svg>
+                    <span>Chat</span>
+                </button>
+                <button type="button" class="m-nav-item" id="mobile-history-trigger">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                    <span>History</span>
+                </button>
+                <button type="button" class="m-nav-item">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    <span>Discover</span>
+                </button>
+                <button type="button" class="m-nav-item">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <span>Profile</span>
+                </button>
+            </nav>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
